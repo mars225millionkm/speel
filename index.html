@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>sleep·track · mobile fit · 8h goal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sleep·track · auto % · 8h goal</title>
     <style>
         * {
             box-sizing: border-box;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -15,33 +15,31 @@
             background: #f1f5f9;
             min-height: 100vh;
             display: flex;
-            align-items: flex-start;
             justify-content: center;
-            padding: 12px;
+            align-items: center;
+            padding: 1.5rem;
         }
         .card {
-            max-width: 600px;
+            max-width: 1000px;
             width: 100%;
             background: white;
-            border-radius: 32px;
+            border-radius: 2rem;
             box-shadow: 0 20px 35px -8px rgba(0,0,0,0.15);
-            padding: 1.5rem 1.2rem 2rem;
-            margin: 0 auto;
+            padding: 2rem 2rem 2.5rem;
         }
         h1 {
-            font-size: 1.9rem;
+            font-size: 2rem;
             font-weight: 500;
             letter-spacing: -0.02em;
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
             gap: 0.5rem;
             color: #0a1120;
             margin-bottom: 0.25rem;
         }
         h1 span {
             background: #e6f0ff;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: 400;
             padding: 0.2rem 1rem;
             border-radius: 40px;
@@ -49,46 +47,44 @@
         }
         .sub {
             color: #2c3e5c;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+            margin-bottom: 1.8rem;
+            font-size: 1rem;
             border-left: 4px solid #90b4f0;
             padding-left: 1rem;
         }
-        /* entry panel – stacked on mobile */
         .entry-panel {
             background: #f8fafd;
-            border-radius: 1.8rem;
-            padding: 1.5rem 1.2rem;
-            margin-bottom: 2rem;
+            border-radius: 1.5rem;
+            padding: 1.6rem 2rem;
+            margin-bottom: 2.2rem;
             display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            gap: 1.8rem;
             border: 1px solid #dde7f0;
         }
         .field-group {
             display: flex;
             flex-direction: column;
-            width: 100%;
+            min-width: 180px;
         }
         .field-group label {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.02em;
             font-weight: 600;
             color: #2c4b74;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.3rem;
         }
         .field-group input {
             background: white;
             border: 1px solid #bdcde0;
             border-radius: 60px;
-            padding: 0.8rem 1.2rem;
+            padding: 0.75rem 1.2rem;
             font-size: 1rem;
             width: 100%;
             outline: none;
             transition: 0.15s;
-            -webkit-appearance: none;
-            appearance: none;
         }
         .field-group input:focus {
             border-color: #3e74c0;
@@ -102,16 +98,8 @@
             cursor: default;
         }
         .inline-hint {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: #4b5e7a;
-            margin-top: 0.25rem;
-            padding-left: 0.5rem;
-        }
-        .btn-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            align-items: center;
             margin-top: 0.3rem;
         }
         .btn {
@@ -119,7 +107,7 @@
             color: white;
             border: none;
             font-weight: 500;
-            padding: 0.8rem 1.8rem;
+            padding: 0.8rem 2rem;
             border-radius: 60px;
             font-size: 1rem;
             cursor: pointer;
@@ -127,9 +115,7 @@
             border: 1px solid #1f3a6b;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
-            flex: 1 1 auto;
+            gap: 0.5rem;
             white-space: nowrap;
         }
         .btn-outline {
@@ -137,73 +123,62 @@
             color: #1f3a6b;
             border: 1px solid #a7c0e2;
         }
-        .btn-outline:hover, .btn:hover {
-            opacity: 0.85;
+        .btn-outline:hover {
+            background: #ecf3fc;
+            border-color: #1f3a6b;
         }
-        /* dashboard cards side by side on mobile (still grid, but auto) */
+        .btn:hover {
+            background: #102a50;
+            border-color: #102a50;
+        }
         .dashboard {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-            margin-bottom: 2rem;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
         }
         .stat-box {
             background: #ffffff;
             border-radius: 1.5rem;
-            padding: 1.2rem 1rem;
+            padding: 1.5rem 1.8rem;
             box-shadow: 0 4px 12px rgba(0,20,40,0.02);
             border: 1px solid #dde3ec;
         }
         .stat-label {
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 500;
             color: #546e8a;
             text-transform: uppercase;
-            letter-spacing: 0.2px;
-            margin-bottom: 0.2rem;
-            word-break: break-word;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.3rem;
         }
         .stat-value {
-            font-size: 2.1rem;
+            font-size: 2.8rem;
             font-weight: 400;
-            line-height: 1.1;
+            line-height: 1.2;
             color: #0b1b33;
-            word-break: break-word;
         }
         .stat-value small {
-            font-size: 1rem;
+            font-size: 1.2rem;
             font-weight: 300;
             color: #5f7698;
-            margin-left: 0.2rem;
+            margin-left: 0.3rem;
         }
         .stat-note {
             color: #335b8a;
-            font-size: 0.75rem;
-            margin-top: 0.4rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
         }
         .history-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin: 1rem 0 0.8rem;
-            flex-wrap: wrap;
-            gap: 0.4rem;
+            align-items: baseline;
+            margin: 1.2rem 0 1rem;
         }
         .history-header h3 {
             font-weight: 500;
             color: #14273e;
-            font-size: 1.2rem;
-        }
-        .max-highlight {
-            background: #f2eefb;
-            border-radius: 50px;
-            padding: 0.3rem 1rem;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: #1f3857;
+            font-size: 1.3rem;
         }
         .history-list {
             background: #f9fcff;
@@ -211,68 +186,60 @@
             border: 1px solid #d9e4f0;
             overflow: hidden;
         }
-        /* mobile friendly history row — stacked info */
         .history-row {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 100px 1fr 120px 120px;
             align-items: center;
-            justify-content: space-between;
-            padding: 1rem 1.2rem;
+            padding: 0.9rem 1.5rem;
             border-bottom: 1px solid #dce6f0;
             background: white;
-            gap: 0.5rem;
         }
         .history-row:last-child {
             border-bottom: none;
         }
         .history-index {
             color: #2a4e77;
-            font-weight: 500;
-            font-size: 0.9rem;
-            min-width: 55px;
+            font-weight: 450;
         }
         .history-data {
             display: flex;
-            gap: 0.8rem;
+            gap: 1.2rem;
             font-weight: 500;
-            flex-wrap: wrap;
         }
         .history-data span {
             background: #eaf1fb;
-            padding: 0.3rem 0.9rem;
+            padding: 0.25rem 0.8rem;
             border-radius: 30px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #113355;
-            white-space: nowrap;
         }
         .history-actions {
             display: flex;
             gap: 0.5rem;
-            margin-left: auto;
+            justify-content: flex-end;
         }
         .edit-btn, .delete-btn {
             background: none;
             border: none;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             padding: 0.4rem 1rem;
             border-radius: 40px;
             cursor: pointer;
             font-weight: 500;
             transition: 0.1s;
-            white-space: nowrap;
         }
         .edit-btn {
             background: #e2ebf6;
             color: #1b3f64;
         }
-        .edit-btn:active {
+        .edit-btn:hover {
             background: #c7daf2;
         }
         .delete-btn {
             background: #fee9e7;
             color: #a03f33;
         }
-        .delete-btn:active {
+        .delete-btn:hover {
             background: #fccac5;
         }
         .empty-message {
@@ -280,66 +247,51 @@
             text-align: center;
             color: #6d8bb0;
             font-style: italic;
-            font-size: 0.95rem;
         }
         .footer-note {
             margin-top: 1.2rem;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: #567196;
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.3rem;
+            justify-content: space-between;
+            align-items: center;
         }
-        @media (max-width: 420px) {
-            .history-row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .history-actions {
-                margin-left: 0;
-                width: 100%;
-                justify-content: flex-start;
-            }
-            .stat-value {
-                font-size: 1.8rem;
-            }
-            .btn {
-                padding: 0.7rem 1rem;
-                font-size: 0.95rem;
-            }
+        .max-highlight {
+            background: #f2eefb;
+            border-radius: 50px;
+            padding: 0.4rem 1.2rem;
+            font-weight: 500;
+            color: #1f3857;
         }
     </style>
 </head>
 <body>
 <div class="card">
     <h1>😴 sleep meter <span>8h = 100%</span></h1>
-    <div class="sub">enter minutes → % auto · no dates</div>
+    <div class="sub">enter minutes → percentage auto‑calculated · no dates</div>
 
-    <!-- ENTRY FORM (mobile stacked, auto %) -->
+    <!-- ENTRY FORM (ADD / UPDATE) with auto % -->
     <div class="entry-panel" id="entryPanel">
         <div class="field-group">
             <label>⏱️ sleep minutes</label>
-            <input type="number" id="minutesInput" placeholder="e.g. 420" min="0" step="1" value="480" inputmode="numeric">
+            <input type="number" id="minutesInput" placeholder="e.g. 420" min="0" step="1" value="480">
             <div class="inline-hint">8h = 480 min = 100%</div>
         </div>
         <div class="field-group">
-            <label>📊 % (auto)</label>
-            <input type="number" id="percentInput" readonly step="any" value="100.00">
-            <div class="inline-hint">updates as you type</div>
+            <label>📊 % (auto from minutes)</label>
+            <input type="number" id="percentInput" readonly step="any" value="100">
+            <div class="inline-hint">automatically updates</div>
         </div>
-        <div class="btn-group">
-            <button class="btn" id="addBtn">➕ add entry</button>
-            <button class="btn-outline btn" id="cancelEdit" style="display: none;">✖ cancel</button>
-        </div>
+        <button class="btn" id="addBtn">➕ add entry</button>
+        <button class="btn-outline btn" id="cancelEdit" style="display: none;">✖ cancel edit</button>
     </div>
 
-    <!-- DASHBOARD (exactly as described: avg, highest + minutes) -->
+    <!-- DASHBOARD (only requested stats) -->
     <div class="dashboard">
         <div class="stat-box">
             <div class="stat-label">month avg sleep %</div>
             <div class="stat-value" id="avgPercent">—<small>%</small></div>
-            <div class="stat-note">based on daily %</div>
+            <div class="stat-note">based on your daily %</div>
         </div>
         <div class="stat-box">
             <div class="stat-label">⭐ highest recorded</div>
@@ -348,13 +300,14 @@
         </div>
     </div>
 
-    <!-- HISTORY (day by day, fully editable) -->
+    <!-- HISTORY (editable list) -->
     <div class="history-header">
-        <h3>📋 sleep history</h3>
-        <span class="max-highlight" id="totalEntries">2 days</span>
+        <h3>📋 sleep history (day by day)</h3>
+        <span class="max-highlight" id="totalEntries">0 days</span>
     </div>
     <div id="historyContainer" class="history-list">
-        <!-- filled by js -->
+        <!-- dynamic rows -->
+        <div class="empty-message">no entries yet – add your first sleep</div>
     </div>
 
     <div class="footer-note">
@@ -365,12 +318,16 @@
 
 <script>
     (function() {
+        // reference: 8 hours = 480 minutes = 100%
         const IDEAL_MINUTES = 480;
 
+        // ----- store entries as array of objects { minutes: number, percent: number } -----
         let sleepEntries = [];
-        let editIndex = null;
 
-        // DOM
+        // ----- edit state -----
+        let editIndex = null;          // index of entry being edited, null = add mode
+
+        // ----- DOM elements -----
         const minutesInput = document.getElementById('minutesInput');
         const percentInput = document.getElementById('percentInput');
         const addBtn = document.getElementById('addBtn');
@@ -381,17 +338,22 @@
         const highestHoursSpan = document.getElementById('highestHours');
         const totalEntriesSpan = document.getElementById('totalEntries');
 
-        // auto-update percent when minutes change
+        // ----- auto-update percent field when minutes change -----
         function updatePercentFromMinutes() {
             const mins = parseFloat(minutesInput.value);
             if (!isNaN(mins) && mins >= 0) {
-                const computed = (mins / IDEAL_MINUTES) * 100;
-                percentInput.value = computed.toFixed(2);
+                // percent = (minutes / 480) * 100
+                const computedPercent = (mins / IDEAL_MINUTES) * 100;
+                percentInput.value = computedPercent.toFixed(2);  // keep 2 decimals for precision
             } else {
-                percentInput.value = '';
+                percentInput.value = '';  // empty if invalid
             }
         }
+
+        // listen to input events on minutes field
         minutesInput.addEventListener('input', updatePercentFromMinutes);
+
+        // also when field loses focus, ensure it's correct (if someone typed negative, adjust)
         minutesInput.addEventListener('blur', function() {
             let mins = parseFloat(minutesInput.value);
             if (isNaN(mins) || mins < 0) {
@@ -400,10 +362,11 @@
             }
         });
 
-        // localStorage
+        // ----- helper: update dashboard & history & store -----
         function saveToLocal() {
             localStorage.setItem('sleepEntries', JSON.stringify(sleepEntries));
         }
+
         function loadFromLocal() {
             const stored = localStorage.getItem('sleepEntries');
             if (stored) {
@@ -413,7 +376,7 @@
                     sleepEntries = [];
                 }
             } else {
-                // demo entries exactly as in your screenshot description
+                // demo entries: 240 min → 50%, 480 min → 100%
                 sleepEntries = [
                     { minutes: 240, percent: 50.00 },
                     { minutes: 480, percent: 100.00 },
@@ -421,7 +384,7 @@
             }
         }
 
-        // render history (mobile friendly)
+        // ----- render history rows based on sleepEntries array -----
         function renderHistory() {
             if (sleepEntries.length === 0) {
                 historyContainer.innerHTML = `<div class="empty-message">no entries yet – add your first sleep</div>`;
@@ -432,6 +395,7 @@
             sleepEntries.forEach((entry, idx) => {
                 const mins = entry.minutes;
                 const perc = entry.percent;
+                // round percent for display (1 decimal max, but keep clean)
                 const percDisplay = Number(perc).toFixed(1).replace(/\.0$/, '');
                 const minsDisplay = mins + ' min';
 
@@ -446,11 +410,13 @@
                             <button class="edit-btn" data-index="${idx}">edit</button>
                             <button class="delete-btn" data-index="${idx}">delete</button>
                         </div>
+                        <div></div>
                     </div>
                 `;
             });
             historyContainer.innerHTML = html;
 
+            // attach event listeners to edit/delete buttons
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const idx = e.target.getAttribute('data-index');
@@ -465,7 +431,7 @@
             });
         }
 
-        // update dashboard
+        // ----- update dashboard: avg, highest, and highest minutes -----
         function updateStats() {
             const n = sleepEntries.length;
             if (n === 0) {
@@ -476,6 +442,7 @@
                 return;
             }
 
+            // average of percents (as described: 50 + 100 = 150, 150/2 = 75)
             let sumPerc = 0;
             let maxPerc = -Infinity;
             let maxMinutes = 0;
@@ -485,72 +452,86 @@
                 sumPerc += p;
                 if (p > maxPerc) {
                     maxPerc = p;
-                    maxMinutes = entry.minutes;
+                    maxMinutes = entry.minutes;   // minutes of highest percentage entry
                 }
             });
 
             const avg = sumPerc / n;
+            // format avg with 1 decimal if needed
             avgPercentSpan.innerText = avg.toFixed(1).replace(/\.0$/, '') + '%';
+
             highestPercentSpan.innerText = maxPerc.toFixed(1).replace(/\.0$/, '') + '%';
             highestHoursSpan.innerText = maxMinutes + ' minutes (at highest %)';
+
             totalEntriesSpan.innerText = n + (n === 1 ? ' day' : ' days');
         }
 
-        // add / update entry
+        // ----- add new entry (from input fields) -----
         function addEntry() {
             const mins = parseFloat(minutesInput.value);
+            // percent comes from the auto field (readonly, but we still read it)
             const perc = parseFloat(percentInput.value);
 
+            // validation: minutes must be valid non-negative, percent must be valid number
             if (isNaN(mins) || mins < 0 || isNaN(perc) || perc < 0) {
-                alert('please enter valid minutes (>=0)');
+                alert('❌ please enter valid minutes (>=0). percentage will auto-calculate.');
                 return;
             }
 
             const newEntry = { minutes: mins, percent: perc };
 
             if (editIndex !== null) {
+                // update existing entry
                 sleepEntries[editIndex] = newEntry;
                 editIndex = null;
                 addBtn.innerText = '➕ add entry';
                 cancelEditBtn.style.display = 'none';
             } else {
+                // add new
                 sleepEntries.push(newEntry);
             }
 
+            // save, re-render, update dashboard, and reset fields
             saveToLocal();
             renderHistory();
             updateStats();
 
-            // reset to default 480
+            // reset minutes to default (480) → triggers auto percent update
             minutesInput.value = '480';
-            updatePercentFromMinutes();
+            updatePercentFromMinutes();   // explicitly set percent to 100
         }
 
+        // ----- start editing an entry (populate form, change button) -----
         function startEdit(index) {
             if (index < 0 || index >= sleepEntries.length) return;
             const entry = sleepEntries[index];
             minutesInput.value = entry.minutes;
-            updatePercentFromMinutes();   // percent auto-sync
+            // manually trigger percent update (though minutes changed, but call to be safe)
+            updatePercentFromMinutes();   // percent field will be set based on minutes
             editIndex = index;
             addBtn.innerText = '✏️ update entry';
             cancelEditBtn.style.display = 'inline-block';
         }
 
+        // ----- cancel editing -----
         function cancelEdit() {
             editIndex = null;
             minutesInput.value = '480';
-            updatePercentFromMinutes();
+            updatePercentFromMinutes();   // resets percent to 100
             addBtn.innerText = '➕ add entry';
             cancelEditBtn.style.display = 'none';
         }
 
+        // ----- delete entry -----
         function deleteEntry(index) {
             if (index < 0 || index >= sleepEntries.length) return;
             sleepEntries.splice(index, 1);
 
+            // if we were editing that deleted entry, cancel edit mode
             if (editIndex === index) {
                 cancelEdit();
             } else if (editIndex !== null && editIndex > index) {
+                // shifting indices: decrement editIndex if it's after deleted
                 editIndex -= 1;
             }
 
@@ -558,19 +539,31 @@
             renderHistory();
             updateStats();
 
+            // if no entries remain and we were in edit mode, already canceled
             if (sleepEntries.length === 0 && editIndex !== null) cancelEdit();
         }
 
-        // init
+        // ----- initial load and render -----
         loadFromLocal();
         renderHistory();
         updateStats();
+        // ensure percent field is correct for initial default minutes (480)
         updatePercentFromMinutes();
 
+        // ----- event listeners -----
         addBtn.addEventListener('click', addEntry);
-        cancelEditBtn.addEventListener('click', cancelEdit);
 
-        window.addEventListener('beforeunload', saveToLocal);
+        cancelEditBtn.addEventListener('click', () => {
+            cancelEdit();
+        });
+
+        // preserve state on window unload
+        window.addEventListener('beforeunload', function() {
+            saveToLocal();
+        });
+
+        // when editing, we keep auto percent; no manual percent needed
+        // delete/edit already handled
     })();
 </script>
 </body>
